@@ -50,7 +50,7 @@
 
               </td>
               <td>{{$appversion->remark}}</td>
-              <td>{{$appversion->time}}</td>
+              <td>{{$appversion->created_at}}</td>
 
 
               <td class="td-manage">

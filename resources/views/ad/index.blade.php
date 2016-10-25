@@ -14,7 +14,14 @@
         <li><a href="javascript:;" data-val="orange" title="绿色">橙色</a></li>
       </ul>
     </li>
-		<li>{{$admin->num}}</li>
+		<li>
+@if($admin->num=='admin')
+尊敬的{{$admin->num}}，您是超级管理员，具有所有权限
+@else
+尊敬的{{$admin->num}}，您是普通管理员，具有部分权限
+@endif
+
+    </li>
 
 
 				<li><a href="/ad/exit">退出</a></li>
@@ -26,7 +33,7 @@
 <aside class="Hui-aside">
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
-
+@if($admin->qx==1)
     <dl id="menu-product">
       <dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
       <dd>
@@ -37,6 +44,7 @@
         </ul>
       </dd>
     </dl>
+
     <dl id="menu-product">
       <dt><i class="Hui-iconfont">&#xe620;</i> 设备管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
       <dd>
@@ -103,8 +111,68 @@
 						</ul>
 					</dd>
 				</dl>
+        @elseif($admin->qx==2)
+        <dl id="menu-product">
+          <dt><i class="Hui-iconfont">&#xe620;</i> 设备管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+          <dd>
+            <ul>
+              <li><a _href="device" data-title="设备列表" href="javascript:void(0)">设备列表</a></li>
+              <li><a _href="110" data-title="报警记录" href="javascript:void(0)">报警记录</a></li>
+
+            </ul>
+          </dd>
+        </dl>
+        <dl id="menu-product">
+          <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+          <dd>
+            <ul>
+              <li><a _href="product_add_brefore" data-title="新增产品" href="javascript:void(0)">新增产品</a></li>
+              <li><a _href="product_list" data-title="产品列表" href="javascript:void(0)">产品列表</a></li>
+        </ul>
+          </dd>
+        </dl>
+        <dl id="menu-product">
+          <dt><i class="Hui-iconfont">&#xe620;</i> 微信管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+          <dd>
+            <ul>
+              <li><a _href="we_list" data-title="微信接入" href="javascript:void(0)">微信接入</a></li>
+              <li><a _href="we_menu" data-title="自定义菜单" href="javascript:void(0)">自定义菜单</a></li>
+              <li><a _href="we_reply" data-title="关注回复" href="javascript:void(0)">关注回复</a></li>
+
+            </ul>
+          </dd>
+        </dl>
+        <dl id="menu-product">
+          <dt><i class="Hui-iconfont">&#xe620;</i> App管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+          <dd>
+            <ul>
+              <li><a _href="app_cmds" data-title="操作日志" href="javascript:void(0)">操作日志</a></li>
+              <li><a _href="app_versions" data-title="App版本" href="javascript:void(0)">App版本</a></li>
+
+            </ul>
+          </dd>
+        </dl>
+            <dl id="menu-product">
+              <dt><i class="Hui-iconfont">&#xe620;</i> 场景管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+              <dd>
+                <ul>
+                  <li><a _href="scene" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+                </ul>
+              </dd>
+            </dl>
+            <dl id="menu-product">
+              <dt><i class="Hui-iconfont">&#xe620;</i> 代理商管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+              <dd>
+                <ul>
+
+                  <li><a _href="agency" data-title="管理列表" href="javascript:void(0)">管理列表</a></li>
+                </ul>
+              </dd>
+            </dl>
 
 
+        @endif
+</div>
 
 </aside>
 <div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

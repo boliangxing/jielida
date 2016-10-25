@@ -13,7 +13,7 @@
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="9">员工列表</th>
+				<th scope="col" colspan="9">用户列表</th>
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value="0" class="input_check_all"></th>
@@ -45,15 +45,18 @@
 				<td>{{$user->login_ip}}</td>
 
 				<td class="td-status"><span class="label label-success radius">
-@if($user->status>=0)
+@if($user->state==1)
 已启用
-@else if($user->status<=0)
+@elseif($user->state==-1)
 未启用
 @endif
+
 				</span></td>
 
 				<td class="td-manage">
-					<a title="编辑" href="javascript:;" onclick="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+				 	<a title="停用" href="javascript:;" onclick="member_stop('停用','/ad/member_stop?id={{$user->uid}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>
+					<a title="修改密码" href="javascript:;" onclick="member_update('修改密码','/ad/member_update?id={{$user->uid}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe63f;</i></a>
+
 						<a title="删除" href="javascript:;" onclick="member_del('{{$user->phone}}','{{$user->uid}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		@endforeach
@@ -185,7 +188,7 @@ $(".input_check").change(function(){
            $(this).val(0);
    }
 
-})
+});
 $(".input_check_all").change(function(){
    if($(this).val()=="0"){
            $(".input_check").val(1);
@@ -196,6 +199,16 @@ $(".input_check_all").change(function(){
 		 $(".input_check_all").val(0);
    }
 
-})
+});
+
+function member_update(title, url){
+		layer_show(title,url,700,770);
+	};
+
+	function member_stop(title, url){
+			layer_show(title,url,700,770);
+		};
+
+
 </script>
 @endsection

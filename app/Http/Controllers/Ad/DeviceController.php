@@ -2,15 +2,27 @@
 namespace App\Http\Controllers\Ad;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Entity\Member;
+use App\Entity\Facility;
+use App\Entity\Plctype;
 use App\Entity\Users;
+
+use App\Entity\product;
 use App\Models\M3Result;
-class MemberController extends Controller
+class DeviceController extends Controller
 {
-  public function toMember(Request $request)
+  public function toDevice(Request $request)
   {
-    $members = Member::all();
-    return view('ad.member')->with('members', $members);
+    $facilitys = Facility::all();
+    $jihe=Facility::join('users', function($join)
+            {
+                $join->on('facility.uid', '=', 'users.uid');
+            })->select('facility.fid','facility.facname','facility.ipaddr','users.phone','facility.product_id','facility.created_at','facility.updated_at','facility.run_status','facility.subfac')->get();
+            $jihe2=Facility::join('product', function($join)
+                    {
+                        $join->on('facility.product_id', '=', 'product.product_id');
+                    })->select('product.product_name')->get();
+    //$Users = Users::where()join('facility','users.uid','=','facility.uid')->get();
+     return view('ad.device')->with('jihe',$jihe);//->with('users',$Users);
   }
   public function toMemberEdit(Request $request)
   {

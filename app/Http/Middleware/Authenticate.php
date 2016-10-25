@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Authenticate
+class Permission
 {
     /**
      * Handle an incoming request.
@@ -15,16 +15,28 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
-    {
-        if (Auth::guard($guard)->guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('login');
-            }
-        }
-
-        return $next($request);
-    }
-}
+     public function handle($request, Closure $next)
+     {
+       $permits = $this->getPermission($request);
+       $admin = \App\Http\Middleware\Authenticate::getAuthUser();
+       // 只要有一个有权限，就可以进入这个请求
+       foreach ($permits as $permit) {
+         if ($permit == '*') {
+           return $next($request);
+         }
+         if ($admin->hasPermission($permit)) {
+           return $next($request);
+         }
+       }
+       echo "没有权限，请联系管理员";exit;
+     }
+     // 获取当前路由需要的权限
+     public function getPermission($request)
+     {
+       $actions = $request->route()->getAction();
+       if (empty($actions['permissions'])) {
+         echo "路由没有设置权限";exit;
+       }
+       return $actions['permissions'];
+     }
+   }

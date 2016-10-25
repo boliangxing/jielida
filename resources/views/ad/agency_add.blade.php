@@ -1,40 +1,98 @@
-
+@extends('ad.master')
+@section('content')
 <form action="" method="post" class="form form-horizontal" id="form-agency-add">
-
-
-
-
-
-
-
 <div class="row cl">
-  <label class="form-label col-3"><span class="c-red">*</span>管理员帐号：</label>
+  <label class="form-label col-3"><span class="c-red">*</span>名称：</label>
   <div class="formControls col-5">
-    <input type="text" class="input-text" value="" placeholder="" name="name" datatype="*" nullmsg="管理员名称不能为空">
+    <input type="text" class="input-text" value="" placeholder="" name="name" datatype="*" nullmsg="商户名不能为空">
   </div>
   <div class="col-4"> </div>
 </div>
-
 <div class="row cl">
-  <label class="form-label col-3"><span class="c-red">*</span>管理员密码：</label>
+  <label class="form-label col-3"><span class="c-red">*</span>电话：</label>
   <div class="formControls col-5">
-    <input type="text" class="input-text" value="" placeholder="" name="name" datatype="*" nullmsg="密码不能为空">
+    <input type="text" class="input-text" value="" placeholder="" name="phone" datatype="*" nullmsg="">
   </div>
   <div class="col-4"> </div>
 </div>
+<div class="row cl">
+  <label class="form-label col-3">国家选择</label>
+  <div class="formControls col-5"> <span class="select-box" style="width:150px;">
+    <select class="select" name="country" size="1" id="country">
+
+       @foreach($address as $temp)
+      @if($temp->pparentid==Null&& $temp->cparentid==Null)
+      <option  value="{{$temp->id}}">{{$temp->name}}</option>
+      @endif
+      @endforeach
+
+
+    </select>
+    </span> </div>
+</div>
+<div class="row cl">
+  <label class="form-label col-3">省/州选择</label>
+  <div class="formControls col-5"> <span class="select-box" style="width:150px;">
+    <select class="select" name="province" id="province"size="1"  >
+
+
+
+
+    </select>
+    </span> </div>
+</div>
+<div class="row cl">
+  <label class="form-label col-3">城市选择</label>
+  <div class="formControls col-5"> <span class="select-box" style="width:150px;">
+    <select class="select" name="city"  id="city" size="1">
+
+
+
+
+    </select>
+    </span> </div>
+</div>
 
 <div class="row cl">
-  <label class="form-label col-3"><span class="c-red">*</span>权限设置</label>
- 
+  <label class="form-label col-3"><span class="c-red">*</span>街道</label>
+  <div class="formControls col-5">
+    <input type="text" class="input-text" value="" placeholder="" name="address" datatype="*" nullmsg="">
+  </div>
   <div class="col-4"> </div>
 </div>
+<div class="row cl">
+  <label class="form-label col-3"><span class="c-red">*</span>邮箱</label>
+  <div class="formControls col-5">
+    <input type="text" class="input-text" value="" placeholder="" name="email" datatype="*" nullmsg="">
+  </div>
+  <div class="col-4"> </div>
+</div>
+<div class="row cl">
+  <label class="form-label col-3">等级选择</label>
+  <div class="formControls col-5"> <span class="select-box" style="width:150px;">
+    <select class="select" name="lv"  id="city" size="1">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+<option>3</option>
+
+
+
+    </select>
+    </span> </div>
+</div>
+
+
   <div class="row cl">
     <div class="col-9 col-offset-3">
       <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
     </div>
   </div>
 </form>
+@endsection
 
+
+@section('my-js')
 <script type="text/javascript">
 $("#form-agency-add").Validform({
   tiptype:2,

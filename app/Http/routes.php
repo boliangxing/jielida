@@ -34,10 +34,12 @@ Route::group(['prefix'=>'ad'],function(){
      Route::get('/agency/province_id/{province_id}/country_id/{country_id}', 'Ad\agencyController@toagencyBypid');
      Route::post('agency/add','Ad\agencyController@agencyAdd');
      Route::post('agency/del','Ad\agencyController@agencydel');
-
+      Route::post('member/update', 'Ad\MemberController@memberUpdate');
+      Route::post('member/stop', 'Ad\MemberController@memberStop');
 
      Route::post('permission/add','Ad\permissionController@permissionAdd');
 
+     Route::post('cmds/add','Ad\AppController@versionAdd');
 
 
 Route::post('member/del','Ad\userController@memberdel');
@@ -64,12 +66,19 @@ Route::post('appversions/del','Ad\AppController@verdel');
    });
 
     Route::get('/login','Ad\IndexController@toLogin');
+    Route::get('/ad/device_fac',function (){
+
+      return view('ad.device_fac');
+    });
 
     Route::get('/member','Ad\userController@tousers');
     Route::get('/memberfeedback','Ad\userController@tofeedback');
+     Route::get('/member_update', 'Ad\MemberController@tomemberUpdate');
+     Route::get('/member_stop', 'Ad\MemberController@tomemberStop');
 
+  //   Route::get('/device','Ad\IndexController@toDevice');
 
-    Route::get('/device','Ad\IndexController@toDevice');
+     Route::get('/device','Ad\DeviceController@toDevice');
 
     Route::get('/110','Ad\IndexController@to110');
 
@@ -99,3 +108,5 @@ Route::get('/cmds_edit','Ad\AppController@cmds_edit');
 
 
 });
+
+Route::post('/admin/validate', ['uses' => 'AdminController@postValidate', 'permissions'=>['admin.validate', 'admin.index']]);

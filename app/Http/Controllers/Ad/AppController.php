@@ -19,6 +19,27 @@ class AppController extends Controller
     return view('ad.app_cmds')->with('appcmds', $Appcmds);
   }
 
+public function versionAdd(Request $request){
+
+
+  $name=$request->input('name','');
+  $leixing=$request->input('leixing','');
+  $tootips=$request->input('tootips','');
+  $filename=$request->input('filename','');
+  $remark=$request->input('remark','');
+  $appversions=new Appversion;
+  $appversions->vname=$name;
+  $appversions->file=$filename;
+    $appversions->type=$leixing;
+      $appversions->static=$tootips;
+      $appversions->remark=$remark;
+      $appversions->save();
+      $m3_result = new M3Result;
+      $m3_result->status = 0;
+      $m3_result->message = '添加成功';
+      return $m3_result->toJson();
+}
+
   public function verdel(Request $request){
 
     $id=$request->input('id','');
@@ -30,7 +51,7 @@ class AppController extends Controller
 
 
   }
-  public function cmds_edit(){
+  public function cmds_edit(Request $request){
 
 return view ('ad.cmds_edit');
 

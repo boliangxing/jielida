@@ -15,21 +15,35 @@ class IndexController extends Controller
       $m3_result->status = 1;
       $m3_result->message = "帐号或密码不能为空!";
       return $m3_result->toJson();
-    }
-    $admin = Admin::where('num', $username)->where('pwd',  $password)->first();
+    }else{
+    $admin = Admin::where('num', $username)->where('pwd',  $password)->where('qx', 1)->first();
     if(!$admin) {
-      $m3_result->status = 2;
-      $m3_result->message = "账号或密码错误";
+      $admin = Admin::where('num', $username)->where('pwd',  $password)->first();
+if(!$admin){  $m3_result->status = 2;
+  $m3_result->message = "账号或密码错误";
+}else{
+
+  $admin = Admin::where('num', $username)->where('pwd',  $password)->where('qx', 2)->first();
+if(!$admin){
+
+  $m3_result->status = 2;
+  $m3_result->message = "您的权限不足";
+
+}else{
+
+  $m3_result->status = 0;
+  $m3_result->message = "登录成功!";
+  $request->session()->put('admin', $admin);
+}
+
+}
+
     } else {
-      $admin = Admin::where('num', $username)->where('pwd',  $password)->where('qx', 1)->first();
-      if(!$admin) {
-        $m3_result->status = 2;
-        $m3_result->message = "并不是超级管理员";
-      }else{
       $m3_result->status = 0;
       $m3_result->message = "登录成功!";
       $request->session()->put('admin', $admin);
-}
+
+    }
     }
     return $m3_result->toJson();
   }
@@ -50,12 +64,11 @@ class IndexController extends Controller
 
   }
 
-  public function toDevice()
+  public function toDevice_Fac()
   {
-    return view('ad.device');
+    return view('ad.device_fac');
   }
-
-  public function to110()
+   public function to110()
   {
     return view('ad.110');
   }

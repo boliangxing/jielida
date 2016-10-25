@@ -1,0 +1,63 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'gulp' ]
+2 info using npm@2.15.9
+3 info using node@v4.6.1
+4 verbose install initial load of C:\Program Files\nodejs\package.json
+5 verbose readDependencies loading dependencies from C:\Program Files\nodejs\package.json
+6 silly cache add args [ 'gulp', null ]
+7 verbose cache add spec gulp
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'gulp',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'gulp',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: 'latest',
+8 silly cache add   type: 'tag' }
+9 silly addNamed gulp@latest
+10 verbose addNamed "latest" is being treated as a dist-tag for gulp
+11 info addNameTag [ 'gulp', 'latest' ]
+12 silly mapToRegistry name gulp
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry http://registry.cnpmjs.org/
+15 silly mapToRegistry data Result {
+15 silly mapToRegistry   raw: 'gulp',
+15 silly mapToRegistry   scope: null,
+15 silly mapToRegistry   name: 'gulp',
+15 silly mapToRegistry   rawSpec: '',
+15 silly mapToRegistry   spec: 'latest',
+15 silly mapToRegistry   type: 'tag' }
+16 silly mapToRegistry uri http://registry.cnpmjs.org/gulp
+17 verbose addNameTag registry:http://registry.cnpmjs.org/gulp not in flight; fetching
+18 verbose request uri http://registry.cnpmjs.org/gulp
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 20:32:38
+21 verbose request id 93dc4702761bc788
+22 http request GET http://registry.cnpmjs.org/gulp
+23 info retry will retry, error on last attempt: Error: Invalid protocol: null
+24 info attempt registry request try #2 at 20:32:48
+25 http request GET http://registry.cnpmjs.org/gulp
+26 info retry will retry, error on last attempt: Error: Invalid protocol: null
+27 info attempt registry request try #3 at 20:33:48
+28 http request GET http://registry.cnpmjs.org/gulp
+29 verbose stack Error: Invalid protocol: null
+29 verbose stack     at Request.init (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:473:31)
+29 verbose stack     at new Request (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:142:8)
+29 verbose stack     at request (C:\Program Files\nodejs\node_modules\npm\node_modules\request\index.js:55:10)
+29 verbose stack     at CachingRegistryClient.makeRequest (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:149:13)
+29 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:66:17
+29 verbose stack     at RetryOperation._fn (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\attempt.js:18:5)
+29 verbose stack     at null._onTimeout (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\retry\lib\retry_operation.js:49:10)
+29 verbose stack     at Timer.listOnTimeout (timers.js:92:15)
+30 verbose cwd F:\jielida
+31 error Windows_NT 10.0.10586
+32 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "gulp"
+33 error node v4.6.1
+34 error npm  v2.15.9
+35 error Invalid protocol: null
+36 error If you need help, you may report this error at:
+36 error     <https://github.com/npm/npm/issues>
+37 verbose exit [ 1, true ]

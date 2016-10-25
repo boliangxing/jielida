@@ -1,7 +1,6 @@
 @extends('ad.master')
 @section('content')
-@extends('ad.master')
-@section('content')
+ 
 
 <div class="pd-20">
 	<div class="text-c"> 日期范围：
@@ -30,7 +29,7 @@
 
 			@foreach($feedbacks as $feedback)
 			<tr class="text-c">
- 
+
  				<td>{{$feedback->uid}}</td>
 				<td>{{$feedback->content}}</td>
 				<td>{{$feedback->time}}</td>

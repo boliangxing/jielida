@@ -68,8 +68,6 @@
 			content: url
 		});
 		layer.full(index);
-
-
 }
 function agency_edit(title,url){
 	var index = layer.open({
